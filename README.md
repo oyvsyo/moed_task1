@@ -112,7 +112,7 @@ To set parameters with GUI you need to know some rules:
 1. All entries are required.  
 2. Enter the vaule of "key":"value" pairs from config file.   
 3. If key value is list - write parameters in list format (like [a, b, c]).    
-4. For FWMH simulation by formula: FWHM = a0+a1*sqrt(E) just chech   
+4. For FWMH simulation by formula: FWHM = a0+a1*sqrt(E) just check   
 <kbd>FWHM optin calculate</kbd> checkbuttun   
 5. Other parameters sets like vaule vor keys in config file dict.
 
