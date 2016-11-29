@@ -1,0 +1,35 @@
+<specter simulation>
+<after square brackets "[..]" always put ",">
+<comments writes here>
+<can't comment in comments>
+<all parameters must be set>
+{
+    <Energy range (keV) (must be positive):>
+    'interval': [50, 3000],
+    <number of bins (put "," after bin number value):>
+    <must be positive int number>
+    'num_bin': 300,
+
+    <peaks parameters sets in square brackets>
+    <in defined order: [Intensity(Bk), Energy(keV), FWMH(keV)]>
+    <peaks must be positive>
+    'peaks':[
+        [15000, 2000.89, 150.8],
+        [14000, 1400.5, 135.0],
+        [13000, 1000, 131.0],
+        [17000, 1200, 75.0],
+        [12000, 2999, 50.0],
+    ],
+
+    <optional chose for FWMH calculating>
+    < 0 - FWMH sets from peak parameters>
+    < 1 - calculating by formula: FWHM = a0+a1*sqrt(E)>
+    <after opt1 value put ",">
+    "opt1": 1,
+
+    <set the FWMH params if opt1=1 [a0, a1]:>
+    "FWHM_pars": [0.5, 1],
+
+    <background parameters [a, b, c, d] : exp(a+b*x) + c+d*x>
+    'background': [4, -0.01, 50, -0.005],
+}
