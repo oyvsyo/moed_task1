@@ -134,36 +134,35 @@ To save a pictures and .txt files of simulated spectrum press
 <kbd>File->Save output to..</kbd>  and write a path to directory that   
 will be created for yuor output files (dir name - *name_out*).  
 You can find 4 eps pictures and 4 txt spectrum files. (txt files - its
-two columns of float numbers - first - energy, second - counts)
-and enter name.
+two columns of float numbers - first - energy, second - counts).
 
 
 
 ### Requirments
-This software is require python 2.7* versions, some standart for ubuntu 14.04 librarys:
+This software is require python 2.7* versions, some standart for ubuntu 14.04 python librarys:
 - math
 - re
 - os
 - ast
 - sys
-- numpy
 - Tkinter
 - tkFileDialog
 - tkMessageBox   
 
+There are one non standart library:
+- numpy 1.8.2
+
 And tha main core of simulation - __ROOT__.
->Notice! For using this program yuo must have ROOT classes avaliable in python scope. Read more about [PyRoot](https://root.cern.ch/pyroot)
+>Notice! For using this program you must have ROOT classes avaliable in python scope. Read more about [PyRoot](https://root.cern.ch/pyroot)
 
->Notice! ROOT 5.* versions are required
+>Notice! ROOT 5.* versions are required (probably must works on 6.* versions, but not tested)
 
->Tested on ubuntu 14.04
+>Tested on ubuntu 14.04 whith python 2.7.6 and ROOT 5.34/36, gcc 4.8.4 
 
 ## Authors
 
-**Dvoiak Stepan** - *Initial work* - [oyvsyo](https://github.com/oyvsyo)
+**Dvoiak Stepan** - [oyvsyo](https://github.com/oyvsyo)
 
 ## License
 
-This project is licensed under the GNU GENERAL PUBLIC License - see the [LICENSE](LICENSE) file for details
-
-
+This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the [LICENSE](LICENSE) file for details
