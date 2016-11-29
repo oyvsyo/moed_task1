@@ -7,7 +7,12 @@ This program can modulate peaks, compton and background by parameters.
 
 ## Getting Started
 
-To start nodulation jus run this command in terminal (bash shell) in project directory:
+Clone this repo to your local machine:
+
+```
+$ git clone https://github.com/oyvsyo/moed_task1.git
+```
+To start nodulation jus run this command in terminal (bash shell or mac shell) in project directory:
 
 ```
 $ python2 task1.py
@@ -101,26 +106,25 @@ An example of default confuguration file:
 
 ## Using GUI
 The main logic based on config file syntax.  
+The simplest way - just edit default parameters!  
 
 To set parameters with GUI you need to know some rules:  
 1. All entries are required.  
 2. Enter the vaule of "key":"value" pairs from config file.   
-3. If key value is list - write parameters in list format (like [a, b, c]), peaks:   
+3. If key value is list - write parameters in list format (like [a, b, c]).    
+4. For FWMH simulation by formula: FWHM = a0+a1*sqrt(E) just chech   
+<kbd>FWHM optin calculate</kbd> checkbuttun   
+5. Other parameters sets like vaule vor keys in config file dict.
 
 >Notice! GUI does not support comments.
 
-
+Example for peak entry:  
 ```
 [[14000, 2700.89, 110.8]
  [16000, 700.5, 135.0]
  [17000, 1600, 75.0]]
 ```
 >Ntice: for peaks its not nessecery to write `","` after `"]"`
-
-
-4. For FWMH simulation by formula: FWHM = a0+a1*sqrt(E) just chech   
-<kbd>FWHM optin calculate</kbd> checkbuttun   
-5. Other parameters sets like vaule vor keys in config file dict.   
   
 To save your comfiguration press <kbd>File->Save config as..</kbd>  
 and enter name.
