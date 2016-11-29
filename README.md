@@ -41,7 +41,7 @@ of Energy range of investigated spectrum `[Emin, Emax]` (*unsigned float*)
 * __num_bin__ - number channels (*unsigned interer*)
 * __peaks__ - it's a python list of three dimentional lists with peaks   
 parameters values `[Intensity(1/s), Energy(keV), FWMH(keV)] `(*unsigned float*)  
-* __opt1__ - optional chose for FWHM simulation (integer 1 or o), if 0 - FWHM gets   
+* __opt1__ - optional chose for FWHM simulation (integer 1 or 0), if 0 - FWHM gets   
 from last peak parameters, if 1 - FWHM is calculated by formula: <kbd>a0+a1*sqrt(E)</kbd>
 * __FWHM_pars__ - the parameters of FWHM formula `[a0, a1]` (*float numbers*)
 * __background__ - parameters of background simulation formula:   
@@ -49,10 +49,13 @@ from last peak parameters, if 1 - FWHM is calculated by formula: <kbd>a0+a1*sqrt
 
 >Notice! Its not recomendet to set `num_bin` parameter over 1000.   
 >Calculating can take too much time (4 seconds on my computer).  
->Operations increase like (num_bin)^2 times.
+>Operations numbers increase like (num_bin)^2 times.
 
 Also you can comment some text with `"<"` and `">"` symbols like:  
 `<comment here>`.
+
+>Notice! You can't use `"<"` and `">"` symbols inside comment.
+
 An example of default confuguration file:
 ```
 <spectrum simulation>
@@ -70,11 +73,11 @@ An example of default confuguration file:
     <in defined order: [Intensity(1/s), Energy(keV), FWMH(keV)]>
     <peaks parameters must be positive>
     'peaks':[
-        [150, 2000.89, 150.8],
-        [140, 140.0.5, 135.0],
-        [130, 1000, 131.0],
-        [170, 1200, 75.0],
-        [120, 2999, 50.0],
+        [15000, 2000.89, 150.8],
+        [14000, 1400.5, 135.0],
+        [13000, 1000, 131.0],
+        [17000, 1200, 75.0],
+        [12000, 2999, 50.0],
     ],
 
     <optional chose for FWMH simulation>
@@ -94,15 +97,15 @@ An example of default confuguration file:
 
 ```
 
->Notice! The config must have `.txt` exestention
+>Notice! The config file must have `.txt` exestention
 
 ## Using GUI
 The main logic based on config file syntax.  
 
 To set parameters with GUI you need to know some rules:  
-1. All entries are required.
-2. Enter the vaule of "key":"value" pairs from config file.
-3. If key value is list - write parameters in list format (like [a, b, c]), peaks:
+1. All entries are required.  
+2. Enter the vaule of "key":"value" pairs from config file.   
+3. If key value is list - write parameters in list format (like [a, b, c]), peaks:   
 
 >Notice! GUI does not support comments.
 
@@ -116,8 +119,8 @@ To set parameters with GUI you need to know some rules:
 
 
 4. For FWMH simulation by formula: FWHM = a0+a1*sqrt(E) just chech   
-<kbd>FWHM optin calculate</kbd> checkbuttun
-5. Other parameters sets like vaule vor keys in config file dict. 
+<kbd>FWHM optin calculate</kbd> checkbuttun   
+5. Other parameters sets like vaule vor keys in config file dict.   
   
 To save your comfiguration press <kbd>File->Save config as..</kbd>  
 and enter name.
