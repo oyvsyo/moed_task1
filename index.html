@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Moed task1 by oyvsyo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Moed task1</h1>
+      <h2 class="project-tagline">Phisical spectrum modulation program on python and ROOT</h2>
+      <a href="https://github.com/oyvsyo/moed_task1" class="btn">View on GitHub</a>
+      <a href="https://github.com/oyvsyo/moed_task1/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/oyvsyo/moed_task1/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="task1" class="anchor" href="#task1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Task1</h1>
+
+<p>Task1 is the open source project for spectrum modulation designed by Dvoiak Stepan,<br>
+Kiev National University student for MOED course.<br>
+This program can modulate peaks, compton and background by parameters.</p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Clone this repo to your local machine:</p>
+
+<pre><code>$ git clone https://github.com/oyvsyo/moed_task1.git
+</code></pre>
+
+<p>To start nodulation jus run this command in terminal (bash shell or mac shell) in project directory:</p>
+
+<pre><code>$ python2 task1.py
+</code></pre>
+
+<p>You will see two windows (left - for config window, rigth - for drawing spectrums).<br>
+In config window you can set parameters of spectrums, load configurations, save configuration,
+ save spectrums in txt file and eps pictures.    </p>
+
+<h2>
+<a id="default-parameters" class="anchor" href="#default-parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default parameters</h2>
+
+<p>To draw simple default specters just press red button <kbd>Draw</kbd>.<br>
+You got spectrums on canvas (drawing window)<br>
+If you want to clear all entries - press pink button <kbd>Clear All</kbd>.<br>
+If you want to set defaul parameters again - press <kbd>Default</kbd> button.  </p>
+
+<h2>
+<a id="your-own-configuration" class="anchor" href="#your-own-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Your own configuration</h2>
+
+<p>The best way to set you own spectrum parameters - it's change defaul!<br>
+All rules and sintaxys diclarated in next paragraf.</p>
+
+<p>Also, you can write config file manualy (syntaxis - like json<br>
+or standart python dict)<br>
+To load your file - simply open menu <kbd>File-&gt;Open config</kbd></p>
+
+<h2>
+<a id="the-rules-of-config-file" class="anchor" href="#the-rules-of-config-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The rules of config file</h2>
+
+<p>Concept of config file is python dict - structure of  "key": "value"<br>
+pairs.
+There are 6 keys of parameters:</p>
+
+<ul>
+<li>
+<strong>interval</strong> - the python list of two values: minimum and maximum<br>
+of Energy range of investigated spectrum <code>[Emin, Emax]</code> (<em>unsigned float</em>)</li>
+<li>
+<strong>num_bin</strong> - number channels (<em>unsigned interer</em>)</li>
+<li>
+<strong>peaks</strong> - it's a python list of three dimentional lists with peaks<br>
+parameters values <code>[Intensity(1/s), Energy(keV), FWMH(keV)]</code>(<em>unsigned float</em>)<br>
+</li>
+<li>
+<strong>opt1</strong> - optional chose for FWHM simulation (integer 1 or 0), if 0 - FWHM gets<br>
+from last peak parameters, if 1 - FWHM is calculated by formula: <kbd>a0+a1*sqrt(E)</kbd>
+</li>
+<li>
+<strong>FWHM_pars</strong> - the parameters of FWHM formula <code>[a0, a1]</code> (<em>float numbers</em>)</li>
+<li>
+<strong>background</strong> - parameters of background simulation formula:<br>
+<kbd>a*exp(b* E) + c+d* E</kbd> (<em>float numbers</em>)</li>
+</ul>
+
+<blockquote>
+<p>Notice! Its not recomendet to set <code>num_bin</code> parameter over 1000.<br>
+Calculating can take too much time (4 seconds on my computer).<br>
+Operations numbers increase like (num_bin)^2 times.</p>
+</blockquote>
+
+<p>Also you can comment some text with <code>"&lt;"</code> and <code>"&gt;"</code> symbols like:<br>
+<code>&lt;comment here&gt;</code>.</p>
+
+<blockquote>
+<p>Notice! You can't use <code>"&lt;"</code> and <code>"&gt;"</code> symbols inside comment.</p>
+</blockquote>
+
+<p>An example of default confuguration file:</p>
+
+<pre><code>&lt;spectrum simulation&gt;
+&lt;config file example&gt;
+&lt;after square brackets "[..]" always put ","&gt;
+&lt;all parameters must be set&gt;
+{
+    &lt;Energy(keV) range - must be positive:&gt;
+    'interval': [50, 3000],
+    &lt;number of bins (put "," after bin number value):&gt;
+    &lt;must be positive int number&gt;
+    'num_bin': 300,
+
+    &lt;peaks parameters sets in square brackets&gt;
+    &lt;in defined order: [Intensity(1/s), Energy(keV), FWMH(keV)]&gt;
+    &lt;peaks parameters must be positive&gt;
+    'peaks':[
+        [15000, 2000.89, 150.8],
+        [14000, 1400.5, 135.0],
+        [13000, 1000, 131.0],
+        [17000, 1200, 75.0],
+        [12000, 2999, 50.0],
+    ],
+
+    &lt;optional chose for FWMH simulation&gt;
+    &lt; 0 - FWMH is set from peak parameters&gt;
+    &lt; 1 - calculating by formula: FWHM = a0+a1*sqrt(E)&gt;
+    &lt;after opt1 value put ","&gt;
+    "opt1": 1,
+
+    &lt;set the FWMH params for formula FWHM = a0+a1*sqrt(E)&gt;
+    &lt;if opt1=1 [a0, a1]:&gt;
+    "FWHM_pars": [0.5, 1],
+
+    &lt;background parameters [a, b, c, d] : a*exp(b*E) + c+d*E&gt;
+    &lt;parameter 'a' must be positive&gt;
+    'background': [40, -0.01, 50, -0.005],
+}
+
+</code></pre>
+
+<blockquote>
+<p>Notice! The config file must have <code>.txt</code> exestention</p>
+</blockquote>
+
+<h2>
+<a id="using-gui" class="anchor" href="#using-gui" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using GUI</h2>
+
+<p>The main logic based on config file syntax.<br>
+The simplest way - just edit default parameters!  </p>
+
+<p>To set parameters with GUI you need to know some rules:<br>
+1. All entries are required.<br>
+2. Enter the vaule of "key":"value" pairs from config file.<br>
+3. If key value is list - write parameters in list format (like [a, b, c]).<br>
+4. For FWMH simulation by formula: FWHM = a0+a1*sqrt(E) just check<br>
+<kbd>FWHM optin calculate</kbd> checkbuttun<br>
+5. Other parameters sets like vaule vor keys in config file dict.</p>
+
+<blockquote>
+<p>Notice! GUI does not support comments.</p>
+</blockquote>
+
+<p>Example for peak entry:  </p>
+
+<pre><code>[[14000, 2700.89, 110.8]
+ [16000, 700.5, 135.0]
+ [17000, 1600, 75.0]]
+</code></pre>
+
+<blockquote>
+<p>Ntice: for peaks its not nessecery to write <code>","</code> after <code>"]"</code></p>
+</blockquote>
+
+<p>To save your comfiguration press <kbd>File-&gt;Save config as..</kbd><br>
+and enter name.</p>
+
+<h2>
+<a id="saving-results-of-simulation" class="anchor" href="#saving-results-of-simulation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saving results of simulation</h2>
+
+<p>To save a pictures and .txt files of simulated spectrum press<br>
+<kbd>File-&gt;Save output to..</kbd>  and write a path to directory that<br>
+will be created for yuor output files (dir name - <em>name_out</em>).<br>
+You can find 4 eps pictures and 4 txt spectrum files. (txt files - its
+two columns of float numbers - first - energy, second - counts).</p>
+
+<h3>
+<a id="requirments" class="anchor" href="#requirments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirments</h3>
+
+<p>This software is require python 2.7* versions, some standart for ubuntu 14.04 python librarys:</p>
+
+<ul>
+<li>math</li>
+<li>re</li>
+<li>os</li>
+<li>ast</li>
+<li>sys</li>
+<li>Tkinter</li>
+<li>tkFileDialog</li>
+<li>tkMessageBox<br>
+</li>
+</ul>
+
+<p>There are one non standart library:</p>
+
+<ul>
+<li>numpy 1.8.2</li>
+</ul>
+
+<p>And tha main core of simulation - <strong>ROOT</strong>.</p>
+
+<blockquote>
+<p>Notice! For using this program you must have ROOT classes avaliable in python scope. Read more about <a href="https://root.cern.ch/pyroot">PyRoot</a></p>
+
+<p>Notice! ROOT 5.* versions are required (probably must works on 6.* versions, but not tested)</p>
+
+<p>Tested on ubuntu 14.04 whith python 2.7.6 and ROOT 5.34/36, gcc 4.8.4 </p>
+</blockquote>
+
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h2>
+
+<p><strong>Dvoiak Stepan</strong> - <a href="https://github.com/oyvsyo">oyvsyo</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the <a href="LICENSE">LICENSE</a> file for details</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/oyvsyo/moed_task1">Moed task1</a> is maintained by <a href="https://github.com/oyvsyo">oyvsyo</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
