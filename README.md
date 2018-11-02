@@ -4,6 +4,7 @@ Task1 is the open source project for spectrum modulation designed by Dvoiak Step
 Kiev National University student for MOED course.  
 This program can modulate peaks, compton and background by parameters.
 
+> The code and this instruction also available at [project site](https://oyvsyo.github.io/moed_task1/)
 
 ## Getting Started
 
